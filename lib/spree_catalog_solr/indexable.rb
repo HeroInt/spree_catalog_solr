@@ -28,8 +28,12 @@ module SpreeCatalogSolr
             images.first.attachment.url(:small) if images.any?
           end
           string :taxons, stored: true, multiple: true do
-            taxons.map(&:name)
+            taxons.map(&:permalink)
           end
+          string :taxons_with_parent, stored: true, multiple: true do
+            taxons.collect {|taxon| taxon.permalink.split('/').last(2).join('-')}
+          end
+
 
           integer :similar_products_ids, stored: true, multiple: true do
             related_products_ids(:similar)
