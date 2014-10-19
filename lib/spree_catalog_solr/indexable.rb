@@ -20,6 +20,7 @@ module SpreeCatalogSolr
           text :name, stored: true
           text :description, stored: true
           string :slug, stored: true
+          string :state, stored: true
           text :meta_description, stored: true
           string :primary_image, stored: true do
             images.first.attachment.url(:large) if images.any?
