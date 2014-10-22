@@ -32,7 +32,10 @@ module SpreeCatalogSolr
             taxons.map(&:permalink)
           end
           string :taxons_with_parent, stored: true, multiple: true do
-            taxons.collect {|taxon| taxon.permalink.split('/').last(2).join('-')}
+            Spree::Taxon
+                .select('distinct spree_taxons.*')
+                .joins('inner join spree_taxons parent on parent.lft between spree_taxons.lft and spree_taxons.rgt')
+                .where('parent.id in (?)', taxons.map(&:id)).collect {|taxon| taxon.permalink.split('/').last(2).join('-')}
           end
 
 
