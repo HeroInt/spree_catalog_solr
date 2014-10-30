@@ -28,7 +28,16 @@ module SpreeCatalogSolr
             slug: variant.slug,
             in_stock: variant.in_stock?,
             images: build_images_array(variant),
-            option_values: variant.option_values
+            option_values: variant.option_values.collect do |option_value|
+              {
+                id: option_value.id,
+                image: option_value.image.url(:mini),
+                name: option_value.name,
+                option_type_id: option_value.option_type_id,
+                position: option_value.position,
+                presentation: option_value.presentation
+              }
+            end
         }
       end
     end

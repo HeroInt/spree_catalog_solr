@@ -56,20 +56,11 @@ module SpreeCatalogSolr
           string :option_types, stored: true do
             option_types.includes(:option_values).collect do |option_type|
               {
-                id: option_type.id,
-                name: option_type.name,
-                presentation: option_type.presentation,
-                position: option_type.position,
-                option_values: option_type.option_values.collect do |option_value|
-                  {
-                    id: option_value.id,
-                    image: option_value.image.url(:mini),
-                    name: option_value.name,
-                    option_type_id: option_value.option_type_id,
-                    position: option_value.position,
-                    presentation: option_value.presentation
-                  }
-                end
+                  id: option_type.id,
+                  name: option_type.name,
+                  presentation: option_type.presentation,
+                  position: option_type.position,
+                  option_values: option_type.option_values
               }
             end.to_json
           end
