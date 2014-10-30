@@ -39,8 +39,8 @@ module SpreeCatalogSolr
           end
 
 
-          integer :similar_products_ids, stored: true, multiple: true do
-            related_products_ids(:similar)
+          string :similar_products_ids, stored: true do
+            related_products_ids(:similar).to_json
           end
 
           string :master, stored: true do
