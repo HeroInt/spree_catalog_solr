@@ -18,6 +18,9 @@ module SpreeCatalogSolr
           double :price, stored: true
 
           text :name, stored: true
+          string :name_sort, stored: true do
+            name.downcase
+          end
           text :description, stored: true
           string :slug, stored: true
           string :state, stored: true
