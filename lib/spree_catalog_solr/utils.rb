@@ -35,7 +35,9 @@ module SpreeCatalogSolr
                 name: option_value.name,
                 option_type_id: option_value.option_type_id,
                 position: option_value.position,
-                presentation: option_value.presentation
+                presentation: option_value.presentation,
+                has_image: option_value.image.present?,
+                friendly_name: option_value.friendly_name
               }
             end
         }
