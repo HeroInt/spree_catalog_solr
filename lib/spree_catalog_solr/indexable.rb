@@ -50,10 +50,10 @@ module SpreeCatalogSolr
             SpreeCatalogSolr::Utils.build_variant_hash(master).to_json
           end
 
-          string :variants, stored: true do
+          string :variants, stored: true, multiple: true do
             variants_and_option_values.collect do |v|
-              SpreeCatalogSolr::Utils.build_variant_hash(v)
-            end.to_json
+              SpreeCatalogSolr::Utils.build_variant_hash(v).to_json
+            end
           end
 
           string :option_types, stored: true do
